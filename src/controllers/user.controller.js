@@ -25,7 +25,7 @@ if(
 ){
     throw new ApiError(400,"All fileds are required")
 }
-const existedUser=User.findOne({
+const existedUser=await User.findOne({
     $or:[{username},{email}]
 })
 if(existedUser){
@@ -58,7 +58,7 @@ if(!createdUser){
     throw new ApiError(500,"Something went wrong from our side")
 }
 return res.status(201).json(
-    new ApiResponse(200,createdUser,"User registerd successfully")
+    new ApiResponse(200,createdUser,"User registered successfully")
 )
 
 })
